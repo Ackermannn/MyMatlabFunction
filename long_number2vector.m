@@ -1,7 +1,8 @@
-%°ÑĞÎÈç ¡®12345687¡¯µÄÊı×Ö·Ö³ÉÏòÁ¿
-
-a=11011;
-for i=1:length(num2str(a))
-    b(i)=mod(a,10);   a=floor(a/10);
+%æŠŠå½¢å¦‚ â€˜12345687â€™çš„æ•°å­—åˆ†æˆå‘é‡
+clc,clear
+a = 12345687;
+for i = 1:length( num2str(a) )
+    b(i) = mod(a, 10);   
+    a = floor(a / 10);
 end
-b=b(end:-1:1)
+b = b(end: -1: 1)
