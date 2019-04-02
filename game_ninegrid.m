@@ -1,18 +1,19 @@
 %% main
+%% è‡ªå·±ç¼–å†™çš„äº•å­—æ£‹æ¸¸æˆ
 clc,clear
 
-disp('¾®×ÓÆåv1.0')
-disp('Íæ¼Ò±ê¼ÇÎª 1 ,»úÆ÷±ê¼ÇÎª 9')
-ninegrid = zeros(3,3); %ÆåÅÌÇåÁã
+disp('äº•å­æ£‹v1.0')
+disp('ç©å®¶æ ‡è®°ä¸º 1 ,æœºå™¨æ ‡è®°ä¸º 9')
+ninegrid = zeros(3,3); %æ£‹ç›˜æ¸…é›¶
 winnerflag = 0;
  
 while (winnerflag == 0)
     
-    scan = input('ÇëÊäÈëÄúÏÂµÄÎ»ÖÃ');
+    scan = input('è¯·è¾“å…¥æ‚¨ä¸‹çš„ä½ç½®');
     [row, list] = number2matrix( scan );
     
     if ninegrid(row, list) ~= 0
-        disp('ÊäÈë·ûºÏ²»¹æÔò£¡')
+        disp('è¾“å…¥ç¬¦åˆä¸è§„åˆ™ï¼')
         continue
     end
     
@@ -20,15 +21,15 @@ while (winnerflag == 0)
     disp(ninegrid)
     
     if judgehuman(ninegrid) == 1
-        disp('ÄãÊ¤Àû£¡');
-        disp('µã»÷ÔËĞĞÖØĞÂ¿ªÊ¼');
+        disp('ä½ èƒœåˆ©ï¼');
+        disp('ç‚¹å‡»è¿è¡Œé‡æ–°å¼€å§‹');
         break
     end
     
-    %% Æ½¾ÖÅĞ¶Ï
+    %% å¹³å±€åˆ¤æ–­
     if isempty( find(ninegrid == 0, 1) )
-        disp('Æ½¾Ö')
-        disp('µã»÷ÔËĞĞÖØĞÂ¿ªÊ¼');
+        disp('å¹³å±€')
+        disp('ç‚¹å‡»è¿è¡Œé‡æ–°å¼€å§‹');
         break
     end
     
@@ -36,8 +37,8 @@ while (winnerflag == 0)
     disp(ninegrid)
     
     if judgerobot(ninegrid) == 1
-        disp('ÄãÊ§°Ü£¡');
-        disp('µã»÷ÔËĞĞÖØĞÂ¿ªÊ¼');
+        disp('ä½ å¤±è´¥ï¼');
+        disp('ç‚¹å‡»è¿è¡Œé‡æ–°å¼€å§‹');
         break
     end
     
@@ -50,7 +51,7 @@ n = 9;
 rand_flag = 1;
 block_flag = 1 ;
 gamecase = [ 1 2 3; 4 5 6; 7 8 9; 1 4 7 ;2 5 8; 3 6 9; 1 5 9; 7 5 3];
-%% ×Ô¼º¶şÁ¬ 
+%% è‡ªå·±äºŒè¿ 
 for i=1:8
     robotcase = gamecase(i,:);
     if sum(  ninegrid(robotcase) ) == 18
@@ -63,7 +64,7 @@ for i=1:8
        break
     end
 end
-%% Íæ¼Ò¶şÁ¬
+%% ç©å®¶äºŒè¿
 if block_flag == 1
     for i=1:8
         smallcase = gamecase(i,:);
@@ -76,7 +77,7 @@ if block_flag == 1
         end
     end
 end
-%% ÆäÓàÇé¿öËæ»ú
+%% å…¶ä½™æƒ…å†µéšæœº
 if rand_flag == 1
     zero_th = find(ninegrid==0);
     thsize = length(zero_th);
