@@ -1,0 +1,15 @@
+%writen by ackermannn
+%2019-4-11 12:00
+%version 1.0
+%找出相同个数大于等于2的行向量，并把相同的放在一起
+A = randi(3,12,4);
+% A矩阵左边两列是新坐标表 右边两列是老坐标
+[C,ia,ic] = unique(A(:,1:2),'rows');
+k = 1;
+for i = 1:length(ia)
+    [row,vol]=size(A(find(ic==i),:));
+    if row>1
+        infor{k,:}=A(find(ic==i),:);
+        k=k+1;
+    end
+end
