@@ -1,0 +1,106 @@
+简单的遗传算法可以使用Matlab 自带的遗传算法工具箱，但是要从Matlab2010版本之后才会自带这个工具箱，且调用命令也有变化，分别是gatool 和optimtool 。GUI 界面如下图所示：
+1、problem setup and results设置与结果
+（1）Solver ：求解程序，选择要用的求解程序（遗传算法，遗传算法多目标等）
+（2）problem ：
+1）fitness function适应度函数，求最小, 这里的使用度函数要自己编写，书写格式是“@函数名”。
+2）number of variable变量数，必须是整数，即，使用这个GUI 界面的适应度函数的变量必须是[1*n]的向量，而不能是[m*n]的矩阵。
+3）constraints 约束
+4）linear inequalities线性不等式，A*x<=b形式，其中A 是矩阵，b 是向量
+5）linear equalities线性等式，A*x=b形式，其中A 是矩阵，b 是向量
+6）bounds 定义域，lower 下限，upper 上限，列向量形式，每一个位置对应一个变量
+7）nonlinear constraint function非线性约束，用户定义，非线性等式必须写成c=0形式，不等式必须写成c<=0形式
+8）integer variable indices 整型变量标记约束，使用该项时Aeq 和beq 必须为空，所有非线性约束函数必须返回一个空值，种群类型必须是实数编码
+举例，若是想让第一个、第三个、第五个变量保持是整数的话，则直接在此处填写[1 3 5]
+9）run solver and view results求解
+use random states from previous run使用前次的状态运行，完全重复前次运行的过程和结果
+2、population
+（1）population type编码类型
+1）double vector实数编码，采用双精度。整数规划的种群类型必须是实数编码。
+2）bitstring 二进制编码。对于生成函数和变异函数，只能选用uniform 和custom ，对于杂交函数，只能使用 scattered singlepoint ，twopoint 或custom 不能使用 hybrid function
+和
+nonlinear constraint function
+3）custom 自定义
+（2）population size：种群大小
+（3）creation function：生成函数，产生初始种群
+1）constraint dependent：约束相关。无约束时为uniform ，有约束时为feasible population
+2）uniform ：均匀分布
+3）feasible population ：自适应种群，生成能够满足约束的种群
+（4）initial population：初始种群，不指定则使用creation function生成，可以指定少于种群数量的种群，由creation function完成剩余的
+（5）initial scores：初始值，如果不指定，则由计算机计算适应度函数作为初始值，对于整型约束不可用，使用向量表示
+（6）initial range ：初始范围，使用向量矩阵表示，第一行表示范围的下限，第二行表示上限
+3、fitness scaling:适应度尺度
+rank ：等级。将适应度排序，然后编号
+proportional ：按比例
+top ：按比例选取种群中最高适应度的个体，这些个体有等比例的机会繁衍，其余的个体被淘汰
+shift linear：线性转换
+custom ：用户定义
+4、selection （selection function）依据适应值选择父代
+stochastic uniform：随机均匀分布
+remainder ： 残余，取适应值的整数部分进行轮盘赌选择
+uniform ：不是一个好方法，但是可以用来做测试
+shift linear：线性转换
+roulette ：轮盘赌算法
+tournament ：联赛选择算法
+custom ：自定义
+5、reproduction 复制，决定如何产生子代
+elite count：精英数，直接传到下一代的个体数
+crossover fraction：杂交概率
+6、mutation （mutation function）突变
+use constraint dependent 默认，与约束有关，无约束时使用gaussian ，有约束时使用adaptive feasible
+gaussian ：利用高斯分布来选取
+uniform ：均匀
+adaptive feasible：
+custom ：自定义
+7、crossover 杂交
+预览：
+scattered ：随机生成遗传二进制向量，按0-1杂交
+single point：单点杂交，生成一个数字，该数字代表的位置开始两父代基因交换 two point：两点交换
+intermediate ：媒介，加权平均
+heuristic ：启发式算法
+arithmetic ：算术平均
+custom ：自定义
+8、migration 迁移
+direction 方向：forward n-》n+1 ；both 双向
+fraction ：指定迁移率，以较小数量种群为标准
+interval ：发生迁移的间隔
+9、constraint parameters约束参数，对应于非线性约束求解器
+initial penalty： 初始罚函数大于等于1
+penalty factor：处罚因子 大于等于1
+10、hybrid function混合函数，指定另外一个最小值函数，在遗传算法结束之后计算，在整数值限制的时候不可用。
+none
+fminsearch 只用于无约束
+patternsearch 约束与无约束
+fminunc 无约束
+fmincon 有约束
+11、stopping criteria停止标准
+generations 到达代数
+time limit时间限制
+fitness limit适应值限制
+stall generations迟滞代数，经过多代适应值没有明显提升
+stall time limit 迟滞时间限制，经过限定时间适应值没有明显提升
+function tolerance 在迟滞代数内适应度函数值的改变量小于这个值，则停止
+nonlinear constraint tolerance 非线性约束容忍值
+12、plot function 绘图函数
+plot interval 绘图间隔
+best fitness最佳适应度值
+best individual最佳个体
+distance 个体间平均距离
+expectation 期望
+genealogy 家系
+range 适应度值最小最大平均值
+score diversity每一代分数的柱状图
+scores 每一代个体的分数
+selection 描绘对每一代贡献的父代
+stopping 停止标准的水平
+max constraint非线性约束中超出范围的最大值
+custom 自定义
+13、output function输出函数
+Custom function: 自定义
+14、display to command window
+off 不输出
+iterative 每一次迭代都输出
+diagnose 诊断，每一次迭代都输出，并且诊断问题信息和选项中相对于默认值的改变值 final 只输出最终值
+15、evaluate fitness and constraint functions评价适应度和约束函数
+in serial 分别独立评价
+vectorized 用同一个函数调用
+in parallel 并行处理

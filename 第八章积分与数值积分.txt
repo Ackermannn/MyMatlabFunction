@@ -1,0 +1,20 @@
+I=dblquad(f,a,b,c,d,tol,trace)
+%求f(x,y)在[a,b]×[c,d]区域上的二重积分。
+ 【例】
+f=@(x,y)exp(-x.^2/2).*sin(x.^2+y)
+I=dblquad(f,-2,2,-1,1)
+
+
+I=trapz(x,y)
+%用梯形法计算积分，适用于被积函数为离散数据时，求函数的定积分
+
+
+[I,n]=quad(‘fname’,a,b,Tol,trace)
+%基于变步长辛普森法计算积分。
+【例】
+ac=@(x)sin(x)./x
+s=quad(ac,pi/4,pi/2)
+
+
+int(f,x,a,b)%定积分
+int(f,x)%不定积分

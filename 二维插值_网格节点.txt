@@ -1,0 +1,18 @@
+%自己先要导入数据并且起名A
+
+%没有插值的曲面图像
+x=0:400:5600;    %x
+y=4800:-400:0;   %y
+[X,Y]=meshgrid(x,y);
+surf(X,Y,A)
+pause
+figure(2)
+xi=linspace(0,5600,80);
+yi=linspace(0,4800,80); 
+[Xi,Yi]=meshgrid(xi,yi);
+Zi=interp2(X,Y,A,Xi,Yi); 
+surf(Xi,Yi,Zi)
+
+%Method(1)nearest最邻近插值(2)linear双线性插值(3)cubic双三次插值 默认为双线性插值。。
+
+

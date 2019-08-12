@@ -1,0 +1,58 @@
+polyval(p,x)%求多项式在某点的值的函数
+[例]
+  p=[2,3,-1,4,5]
+  x=[1,2,-3,5]
+  y=polyval(p,x)  
+
+polyder(p)%求多项式p的导数
+
+poly(x)%构造以x为根的多项式
+
+m=roots(p)%求多项式p的的根
+
+solve(f,x)%对变量x解方程f=0
+[例]
+y=@(x)2*x^2-3*x-8
+ m=solve(y)
+[例2]
+syms x
+y='2*x^2-3*x-8'
+m=solve(y,x)
+[例3]
+y1=@(x,y)2*x^2-3*y-8;
+y2=@(x,y)x-2*y+1;
+[m,n]=solve(y1,y2)
+
+
+fzero(f,x0)%求方程f=0在x0附近的一个根
+[例]
+  x=-5:0.05:5;
+  y=sin(x+1)-0.2*x;
+  plot(x,y)
+  grid on
+  pause
+  n=input('输入根的个数n=')
+  for k=1:n      
+       b0=input('输入初值b0=')
+       a=fzero('sin(x+1)-0.2*x',b0)
+  end
+
+求非线性方程（组）数值解的函数 fsolve
+fsolve(f,x0)  [例]见PPT 9页
+
+
+微分方程解析解
+dsolve(‘方程1’,‘方程2’,…,‘方程n’,‘初始条件,‘自变量’）
+   初始条件省缺时，是求微分方程的通解。
+   Dy代表y的导数，D2y代表y的二阶导数， D3y代表y的三阶导数……
+y=dsolve('D2y-2*Dy+y-x^2=0','x')
+y=dsolve('D2y+4*Dy+29*y','y(0)=0,Dy(0)=15','x')
+[x,y,z]=dsolve('Dx=2*x-3*y+3*z', 'Dy=4*x-5*y+3*z', 'Dz=4*x-4*y+2*z') 
+
+微分方程数值解PPT 18page
+
+
+
+
+
+

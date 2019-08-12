@@ -1,0 +1,15 @@
+ 画曲面z=sin(xy）的图形何等高图
+x=-2:0.05:2;
+ y=x;
+ [X,Y]=meshgrid(x,y);
+ Z=sin(X.*Y);
+ mesh(X,Y,Z)
+ figure(2)
+ v=[-0.8,-0.5,-0.3,0.2,0.5,0.8];
+ [C,h]=contour(Z,v);  %contour(z,v)或contour(x,y,z,v)
+                                   % z是一个矩阵，由z=f(x,y)在一组点处的函数值给出。
+                                   % 若v是正整数，给出需要画的等高线的条数。
+                                   % 若v是向量，给出需要画等高线的指定高度。
+
+ clabel(C,h)                %标明等高线的高度值
+

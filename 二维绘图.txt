@@ -1,0 +1,37 @@
+plot(x,y, 'r*')%单引号内可以略
+
+% 颜  色	                线  型       	点  型
+% r	红色	—	实线	p	五角星
+% k	黑色	— —	虚线	h	六边形
+% b	蓝色	—.	点划线	x	X形
+% g	绿色	：	点线	o	圆圈
+% y	黄色			*	*
+% m	洋红			.	点
+% w	白色			d	菱形
+
+grid                                            ％在图形上加网格
+xlabel( 'x轴')                              %在x轴加标记
+ylabel( 'y轴')                              %在y轴加标记
+title( '正弦、余弦曲线')              %给图形加标题
+text(x0,y0,'字符串')                    %在图上(x0,y0)处加上字符串
+gtext                                          %用鼠标控制在图形上加字符串。
+axis([xmin xmax ymin ymax])  % 确定x，y轴的范围
+axis equal                                  %设定x轴y轴单位相同
+axis square                                %设定图框成方形
+axis off                                       %清除坐标刻度
+
+
+polar(t,r) %t为极角，r为极半径
+     %example
+     %clear,clc
+     %t=0:pi/50:2*pi;
+     %r1=2*(1+cos(t));
+     %polar(t,r1,'r')
+     %title('r=2(1+cost)')
+
+
+ezplot函数: 适用于绘制参数曲线和隐函数确定的曲线。调用格式为
+ezplot(@(x)fun,[a,b]) %绘制显函数曲线 
+ezplot(@(x,y)fun,[xmin,xmax,ymin,ymax])%绘制隐函数曲线
+ezplot(@(x)fun1,@(x)fun2)%绘制参数方程曲线
+

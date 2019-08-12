@@ -1,0 +1,13 @@
+f=ones(50,1);
+intcon=1:50;
+A=-1*b0;
+b=-1*ones(50,1);
+lb=zeros(1,50);
+ub=ones(1,50);
+Aeq=[];
+beq=[];
+x=intlinprog(f,intcon,A,b,Aeq,beq,lb,ub);
+%不懂可以登陆下网站
+%http://mp.weixin.qq.com/s/Y4w0aMRPl5Eiz4Mc0aXf0w
+%
+%

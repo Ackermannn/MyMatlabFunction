@@ -1,0 +1,16 @@
+空间曲线作图命令：plot3(x,y,z,S)
+        其中x,y,z是同阶向量（曲线上的点列坐标），
+         S是字符串，用于设置曲线的颜色、线形和点
+t=0:pi/50:2*pi;
+ x=sin(t).*cos(t).^2;
+ y=cos(t).*sin(t).^2;
+ z=t.*(2*pi-t);
+ plot3(x,y,z,‘r--*')
+
+曲面作图
+x=-7.5:0.5:7.5;
+y=x; 
+[X,Y]=meshgrid(x,y);
+R=sqrt(X.^2+Y.^2+1);
+Z=sin(R)./R;
+mesh(X,Y,Z)
